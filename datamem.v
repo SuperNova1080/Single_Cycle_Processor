@@ -1,27 +1,7 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 30.06.2025 07:44:09
-// Design Name: 
-// Module Name: datamem
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
 
 module datamem(
-    input [6:0]address, 
+    input [31:0]address, 
     input [31:0]writeData,
     input MemRead, MemWrite, clk, reset,
     output reg [31:0]readData
@@ -30,6 +10,7 @@ module datamem(
     reg [31:0]memory[0:127];
     integer i;
     
+    
     always @(posedge clk, posedge reset)
     begin
         if (reset)
@@ -37,10 +18,14 @@ module datamem(
                 for (i=0; i<128; i=i+1)
                 memory[i]<=32'b0;
             end
-        else
-            if (MemRead)
-                readData<=memory[address];
-            else if (MemWrite)
-                memory[address]<=writeData;            
+        else if (MemWrite)
+                memory[address[31:2]]<=writeData;            
+    end
+    
+    always @(*) begin
+        if (MemRead) 
+            readData = memory[address[31:2]];
+        else         
+            readData = 32'b0;
     end
 endmodule
