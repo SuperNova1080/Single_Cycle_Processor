@@ -1,25 +1,4 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 01.07.2025 10:13:47
-// Design Name: 
-// Module Name: control
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
-
 
 module control(
     input [5:0]opcode,
@@ -51,14 +30,14 @@ module control(
                         ALUOp = 2'b00;
                         end
             6'b100011:  begin         
-                        RegDst = 1;
+                        RegDst = 0;
                         ALUSrc = 1;
                         MemtoReg = 1;
                         RegWrite = 1;
                         MemRead = 1;
                         MemWrite = 0;
                         Branch = 0;
-                        ALUOp = 00;
+                        ALUOp = 2'b00;
                         end
             6'b101011:  begin
                         RegDst = 0;
@@ -68,7 +47,7 @@ module control(
                         MemRead = 0;
                         MemWrite = 1;
                         Branch = 0;
-                        ALUOp = 00;
+                        ALUOp = 2'b00;
                         end
             6'b000100:  begin
                         RegDst = 0;
@@ -78,7 +57,7 @@ module control(
                         MemRead = 0;
                         MemWrite = 0;
                         Branch = 1;
-                        ALUOp = 01;
+                        ALUOp = 2'b01;
                         end
               default:  begin
                         RegDst = 0;
@@ -88,7 +67,7 @@ module control(
                         MemRead = 0;
                         MemWrite = 0;
                         Branch = 0;
-                        ALUOp = 00;
+                        ALUOp = 2'b00;
                         end
         endcase
     end
