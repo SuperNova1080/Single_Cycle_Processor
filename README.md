@@ -4,7 +4,7 @@ A fully functional 32-bit MIPS single-cycle processor implemented in Verilog, su
 
 ---
 
-## Architecture Overview
+## Architecture Overview 
 
 
 The processor follows the classic single-cycle MIPS datapath: every instruction completes in exactly one clock cycle. The control unit decodes the opcode and drives all datapath muxes and memory enables.
